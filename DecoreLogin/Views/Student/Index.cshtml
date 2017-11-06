@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DecoreLogin.StudentServiceReference.StudentInfo>
+
+@{
+    Layout = "~/Views/Shared/_LayoutLoggedIn.cshtml";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h1>Studenter <a href="@Url.Action("Create", "Student")" class="btn btn-lg btn-success pull-right"><span class="glyphicon glyphicon-plus"></span> Lägg till</a></h1>
+    </div>
+</div>
+
+<div class="container">
+    <div class="panel panel-default">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th style="color: black;">Programkod</th>
+                    <th>Utgångstid</th>
+                    <th>Kårtillhörighet</th>
+                    <th>Användar ID</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.ProgramCode)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UnionExpiration)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UnionName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                    <td>
+                        <a href="@Url.Action("Details", "Student", new { id = item.Id })" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span> Redigera</a>
+                        <a href="@Url.Action("Delete", "Student", new { id = item.Id})" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-circle"></span> Radera</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <p class="pull-right"><a href="#">Tillbaka</a></p>
+
+</div><!-- /.container -->
+
+
